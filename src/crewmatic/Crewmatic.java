@@ -247,10 +247,18 @@ public class Crewmatic {
         n_47.associated_task = new Wires();
         n_73.associated_task = new Wires();
         n_75.associated_task = new Wires();
-        
+
         n_67.associated_task = new CardSwipe();
-        
+
         n_31.associated_task = new Manifolds();
+        
+        Task D_U=new DownloadUpload();
+        n_73.associated_task = D_U;
+        n_95.associated_task = D_U;
+        n_62.associated_task = D_U;
+        n_30.associated_task = D_U;
+        n_3.associated_task = D_U;
+        n_2.associated_task = D_U;
 
         Thread.sleep(1000);
         Player me = new Player(new Robot(), n_10, 1, (new Color(107, 47, 188)));
