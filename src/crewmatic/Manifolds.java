@@ -48,9 +48,8 @@ public class Manifolds extends Task {
             r.mousePress(InputEvent.BUTTON1_DOWN_MASK);
             Thread.sleep(20);
             r.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-            Thread.sleep(20);
+            Thread.sleep(50);
         }
-        Thread.sleep(3000);
         while (true) {
             Thread.sleep(100);
             if (isCompleted()) {
