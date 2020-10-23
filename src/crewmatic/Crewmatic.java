@@ -260,6 +260,8 @@ public class Crewmatic {
         n_30.associated_task = D_U;
         n_3.associated_task = D_U;
         n_2.associated_task = D_U;
+        
+        n_70.associated_task=new Distributor();
 
         Thread.sleep(1000);
         Player me = new Player(new Robot(), n_10, 1, (new Color(107, 47, 188)));
