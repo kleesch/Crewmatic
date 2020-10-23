@@ -5,7 +5,6 @@
  */
 package crewmatic;
 
-import java.util.PriorityQueue;
 import java.util.Random;
 
 /**
@@ -56,6 +55,9 @@ public class Tree {
 
     public PathConnection Path(String start_id, String end_id) {
         Node start = getNodeById(start_id);
+        if(start_id.equals(end_id)){
+            return(new PathConnection(start,0));
+        }  
         for(Node n : map){
             n.visited=false;
         }
