@@ -275,6 +275,8 @@ public class Crewmatic {
         n_13.associated_task = ap;
         n_37.associated_task = ap;
 
+        n_93.associated_task = new ShieldFix();
+
         Thread.sleep(1000);
         Player me = new Player(new Robot(), n_10, 1, (new Color(107, 47, 188)));
         NodeArray task_list = me.findTasks(Skeld);
