@@ -241,12 +241,13 @@ public class Crewmatic {
         n_91.setPositionException(288, 854);
         n_67.setPositionException(1290, 646);
 
-        n_1.associated_task = new Wires();
-        n_56.associated_task = new Wires();
-        n_61.associated_task = new Wires();
-        n_47.associated_task = new Wires();
-        n_73.associated_task = new Wires();
-        n_75.associated_task = new Wires();
+        Task Wire=new Wires();
+        n_1.associated_task = Wire;
+        n_56.associated_task = Wire;
+        n_61.associated_task = Wire;
+        n_47.associated_task = Wire;
+        n_73.associated_task = Wire;
+        n_75.associated_task = Wire;
 
         n_67.associated_task = new CardSwipe();
 
