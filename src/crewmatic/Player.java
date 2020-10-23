@@ -81,11 +81,17 @@ public class Player {
             //System.out.println("Moving to " + n.getId());
             move(makeInstruction(n));
             location = n;
+            if (location.getId().equals("n_102")) {
+                correctLocation();
+            }
             Thread.sleep(30);
         }
         move(makeInstruction(path.n1));
         location = path.n1;
-        correctLocation();
+
+        if (location.getId().equals("n_102")) {
+            correctLocation();
+        }
         System.out.println("Movement complete");
     }
 
@@ -93,24 +99,11 @@ public class Player {
         return location;
     }
 
-    public void correctLocation() {
-        Color at = r.getPixelColor(location.getX(), location.getY());
-        if (!(at.getBlue() < 200)) {
-            int search_x = location.getX() - search_radius;
-            int search_y = location.getY() - search_radius;
-            outer:
-            for (int x = search_x; x < (search_x + 2 * search_radius); x += 1) {
-                for (int y = search_y; y < search_y + 2 * search_radius; y += 1) {
-                    if (r.getPixelColor(x, y).getBlue() < 200) {
-                        System.out.println("Found player at " + x + ", " + y);
-                        break outer;
-                    }
-                }
-            }
-            System.out.println("Player not found.");
-        } else {
-            System.out.println("Player at location.");
-        }
+    public void correctLocation() throws InterruptedException {
+        move(new Moveset(Movement.DOWN, 30));
+        move(new Moveset(Movement.RIGHT, 30));
+        move(new Moveset(Movement.LEFT, 13));
+        move(new Moveset(Movement.UP, 5));
     }
 
     public NodeArray findTasks(Tree t) throws InterruptedException {
@@ -119,7 +112,7 @@ public class Player {
         setMapState(true);
         for (int i = 0; i < points.length; i++) {
             Color c = r.getPixelColor(points[i].getTaskX(), points[i].getTaskY());
-            if (2 * c.getBlue() < (c.getRed() + c.getGreen()) && points[i].associated_task!=null) {
+            if (2 * c.getBlue() < (c.getRed() + c.getGreen()) && points[i].associated_task != null) {
                 //System.out.println("Task at "+points[i].getId());
                 boolean valid = true;
                 for (int n = 0; n < tasks.getLength(); n++) {
@@ -144,19 +137,20 @@ public class Player {
         return tasks;
 
     }
-    
-    private void setMapState(boolean state) throws InterruptedException{
-        System.out.println("Setting to "+state);
-        Color c=r.getPixelColor(1790,569);
-        Color c2=r.getPixelColor(300,175);
-        if(c.getBlue()>200 && c2.getBlue()>200 && !state){
+
+    private void setMapState(boolean state) throws InterruptedException {
+        //System.out.println("Setting to "+state);
+        Color c = r.getPixelColor(1790, 569);
+        Color c2 = r.getPixelColor(300, 175);
+        if (c.getBlue() > 200 && c2.getBlue() > 200 && !state) {
             r.keyPress(KeyEvent.VK_TAB);
             Thread.sleep(50);
             r.keyRelease(KeyEvent.VK_TAB);
-        } else if (!(c.getBlue()>200) && !(c2.getBlue()>200)  && state){
+        } else if (!(c.getBlue() > 200) && !(c2.getBlue() > 200) && state) {
             r.keyPress(KeyEvent.VK_TAB);
             Thread.sleep(50);
             r.keyRelease(KeyEvent.VK_TAB);
         }
+        Thread.sleep(50);
     }
 }

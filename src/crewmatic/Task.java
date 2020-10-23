@@ -6,6 +6,7 @@
 package crewmatic;
 
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.Robot;
 
 /**
@@ -14,8 +15,12 @@ import java.awt.Robot;
  */
 public abstract class Task {
     Robot r;
-   
+    
     public abstract void execute() throws AWTException,InterruptedException;
     
     public abstract boolean isCompleted();
+    
+    public boolean canUse() throws AWTException{
+        return ((new Robot()).getPixelColor(1808, 988).getRed()>200);
+    }
 }
